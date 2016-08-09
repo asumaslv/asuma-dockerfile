@@ -1,4 +1,4 @@
-FROM centos:centos6
+FROM centos:centos7
 RUN /bin/cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 RUN yum update -y
 RUN yum -y install httpd php php-mysql mysql-server tar wget php-gd
@@ -18,3 +18,4 @@ RUN echo -e "service mysqld start\nservice httpd start\n/bin/bash" > /startServi
 RUN chmod o+x /startService.sh
 EXPOSE 80
 CMD /startService.sh
+
