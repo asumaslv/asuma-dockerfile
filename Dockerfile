@@ -1,5 +1,6 @@
 FROM centos:centos6
 RUN /bin/cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+RUN yum update -y
 RUN yum -y install httpd php php-mysql mysql-server tar wget php-gd
 WORKDIR /tmp/
 RUN wget https://ja.wordpress.org/latest-ja.tar.gz
