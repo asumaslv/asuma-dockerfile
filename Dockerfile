@@ -10,7 +10,7 @@ RUN mv wordpress/* /var/www/html/
 RUN cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 RUN sed -i -e 's/database_name_here/wordpress/g' -e 's/username_here/wordpress/g' -e 's/password_here/wppass/g' /var/www/html/wp-config.php
 RUN sed -i -e 's/AllowOverride\ None/AllowOverride\ AuthConfig/g' /etc/httpd/conf/httpd.conf
-RUN echo -e "AuthUserFile /.htpasswd\nAuthName Himitsu\nAuthType Basic\nrequire valid-user" > /var/www/html/.htaccess
+#RUN echo -e "AuthUserFile /.htpasswd\nAuthName Himitsu\nAuthType Basic\nrequire valid-user" > /var/www/html/.htaccess
 RUN htpasswd -cb /.htpasswd USER1 PASS1
 RUN chown -R apache.apache /var/www/html/
 RUN service mysqld start && mysql -u root -e "CREATE DATABASE wordpress; GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost' IDENTIFIED BY 'wppass'; FLUSH PRIVILEGES;" &&  service mysqld stop
